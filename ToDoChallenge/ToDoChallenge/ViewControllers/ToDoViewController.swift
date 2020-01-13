@@ -46,7 +46,7 @@ final class ToDoViewController: UIViewController, ToDoListViewModelDelegate {
         tableView.reloadData()
     }
     
-    @objc func rightNavButtonPressed() {
+    @objc private func rightNavButtonPressed() {
         let alertController = UIAlertController(title: viewModel.alertTitle, message: nil, preferredStyle: .alert)
         alertController.addTextField { (txtField) in
             txtField.placeholder = self.viewModel.alertTextFieldPlaceHolder

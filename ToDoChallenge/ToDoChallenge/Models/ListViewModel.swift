@@ -11,12 +11,12 @@ import UIKit
 import Realm
 import RealmSwift
 
-class ToDoList: Object {
+final class ToDoList: Object {
     @objc dynamic var name = ""
     let tasks: List<String> = List<String>()
 }
 
-class ListViewModel {
+final class ListViewModel {
     let service = ToDoService()
     var toDoLists: [ToDoList]
         

@@ -14,7 +14,7 @@ protocol ToDoListViewModelDelegate: class {
     func toDoAlertDidClose()
 }
 
-class ToDoListViewModel {
+final class ToDoListViewModel {
     var toDoList: ToDoList
     let service: ToDoService
     
