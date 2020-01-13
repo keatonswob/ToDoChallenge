@@ -8,9 +8,11 @@
 
 import XCTest
 @testable import ToDoChallenge
+import Realm
+import RealmSwift
 
 class ToDoChallengeTests: XCTestCase {
-
+    let service = ToDoService()
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -31,4 +33,19 @@ class ToDoChallengeTests: XCTestCase {
         }
     }
 
+    func testAddingToDoList() {
+        service.addList(named: "Test List")
+        let toDoLists = service.retrieveToDos()
+        XCTAssertTrue(toDoLists.first(where: { $0.name == "Test List" }) != nil)
+    }
+    
+    func testDeleteToDoLists() {
+        service.addList(named: "Test Delete")
+        let todoLists = service.retrieveToDos()
+        guard let deleteList = todoLists.first(where: { $0.name == "Test Delete" }) else { return }
+        service.deleteList(toDoList: deleteList)
+        let afterToDoLists = service.retrieveToDos()
+        XCTAssertTrue(afterToDoLists.first(where: { $0.name == "Test Delete" }) == nil)
+    }
+    
 }
